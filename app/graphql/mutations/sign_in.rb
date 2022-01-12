@@ -18,11 +18,14 @@ module Mutations
 
       raise UserPasswordNotFound unless user.authenticate(auth_provider&.[](:credentials)&.[](:password))
 
-      key = Rails.application.credentials.secret_key_base.byteslice(0..31)
-      crypt = ActiveSupport::MessageEncryptor.new(key)
-      token = crypt.encrypt_and_sign("user-id:#{user.id}")
+      payload = { token: user.id }
 
-      { user: user, token: token }
+      token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
+
+      { 
+        user: user, 
+        token: token 
+      }
     end
   end
 end
