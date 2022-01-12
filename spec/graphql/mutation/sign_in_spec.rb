@@ -53,12 +53,8 @@ RSpec.describe 'sign in', type: :request do
     <<~GQL
       mutation{
         signIn(
-          authProvider: {
-            credentials: {
-              email: "#{email}",
-              password: "#{password}"
-            }
-          }
+          email: "#{email}",
+          password: "#{password}"
         )
         {
           user{
