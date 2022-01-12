@@ -28,3 +28,9 @@
 
 # Ignore all coverage files for simplecov
 /coverage/*
+
+# Ignore co-commits for others
+.gitmessage
+
+# Ignore application configuration
+/config/application.yml

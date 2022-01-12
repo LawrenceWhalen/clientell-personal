@@ -1,13 +1,20 @@
 module Mutations
   class UserCreate < BaseMutation
-    argument :email, String, required: true
-    argument :password, String, required: true
-    argument :password_confirmation, String, required: true
+    class AuthProviderSignupData < Types::BaseInputObject
+      argument :credentials, Types::CreateAuthProviderCredentials, required: false
+    end
+
+    argument :auth_provider, AuthProviderSignupData, required: false
 
     field :user, Types::UserType, null: false
 
-    def resolve(email:, password:, password_confirmation:)
-      user = User.new(email: email, password: password, password_confirmation: password_confirmation)
+
+    def resolve(auth_provider: nil)
+      user = User.new(
+        email: auth_provider&.[](:credentials)&.[](:email),
+        password: auth_provider&.[](:credentials)&.[](:password),
+        password_confirmation: auth_provider&.[](:credentials)&.[](:password_confirmation)
+      )
       if user.save
         {
           user: user
