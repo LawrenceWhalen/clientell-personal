@@ -1,22 +1,24 @@
 module Mutations
   class SignIn < BaseMutation
-    class AuthProviderSignInData < Types::BaseInputObject
-      argument :credentials, Types::AuthProviderCredentialsInput, required: false
-    end
-      argument :auth_provider, AuthProviderSignInData, required: false
+    argument :email, String, required: true
+    argument :password, String, required: true
+    
 
-      field :token, String, null: true
-      field :user, Types::UserType, null: true
+    field :token, String, null: true
+    field :user, Types::UserType, null: true
 
-    def resolve(auth_provider: nil)
+    def resolve(
+      email:,
+      password:
+    )
 
-      raise UserPasswordNotFound unless auth_provider
+      raise UserPasswordNotFound unless password
 
-      user = User.find_by(email: auth_provider&.[](:credentials)&.[](:email))
+      user = User.find_by(email: email)
 
       raise UserPasswordNotFound unless user
 
-      raise UserPasswordNotFound unless user.authenticate(auth_provider&.[](:credentials)&.[](:password))
+      raise UserPasswordNotFound unless user.authenticate(password)
 
       payload = { token: user.id }
 
