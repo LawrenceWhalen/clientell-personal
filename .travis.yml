@@ -5,12 +5,12 @@ script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
 before_script:
-  - psql -c 'create database db_test;' -U postgres
+- psql -c 'create database db_test;' -U postgres
 services:
-  - postgresql
+- postgresql
 deploy:
   provider: heroku
   api_key:
-    secure: YMPyJB5vTFNWDsSm1HpRqdYTahUzkDVmCblGX9OX+b+1Y/OryMucNJk6gaDhpuBQR3rqb/G16m3RNsA78tyLQlQwxv3v1HYwkykXhDiv46VRCGh/W5nbP+wfTnCVqKqvlshJXwJElKxd94LpjS1whBmCCIr1+IT3ML56202w3qr1qu/H9eOZpYuEd3gOlSatR6toPMJfN7Y0bzapvVgBhttA0vn8RI17PYBDJep99ORDHuScHEVmiXreMOsA1m3ipVFtHgu/4dJZ6Qw4TZa5tXO2XBcO49gyCcStabM8/ONUYlxGI3vfP6AeBsP5s3CWP6oMKfipJ7mK/4iwxiqIMHPPFJPYzw4pkyzcquMcVvm0TYq5SeNlQXKEx+b8PjTa0ctQ+hKO/8ig6AHtv9qdIv8GzKHDCs9lYV6LECF5Qgjaq3SkL1QDdMfG5RO5z8xj2G+k40tZWRccvH1/xfmIPsT4A8gBQMPnd81dE1zu0rYW3ArS9NunNC1Y3S5z8gUY4JSsD+lwVan4d+6/6VAU2DKViMMZuEnTSk9C7c2KKazwJy6soljEQPYRupVWfT+YLlfYEewah/00TXNFx3nULx9EJPKkjXlLPGpN5M8LIB+fUXgpTJpIr4SKFN7YVU8Q/jQatwMnpOEAZbBoaDqSP1/IeUckJYyh9Nv3Bo9dJSA=
-  app: date-em-rate-em-be
+    secure: HbYnZoE2TmL2v9yFA8WQPZErEjijKwe4Heap4Yf/1LrxRy3sUN1S6H2l9iIQarK5qJNQ0WcECwDms3k8wcdJqjuc/cDLQVajlnnHG3OWgErCi9UcCZ1YH76hwXJanavcEIpUS0REhTJWHlm5s8Kd4Cz611aRn/iu+v+mNZRQVhpdIjoPASuXgyifgDHrJH5jm7LIN/LCp8k0lb01022/4P3+UA3oR5m8a4GmD2DRDuCIMw++Mr8R+Ed+/AkNZ/6kLUsjx2ExELCmZvS2Fpn0rZzqx2z/yZuVX8rtxW/A0mR5f5Idfq/ckXWuomMC/8swIsnlZtJegzvuKAUcZ1lZtKGlxI8SF9Ua1kJ27BO9QP2yM76359v0beE1SNf/8yujsxNlfPegwI4XrP/tvJT5OTPDmgMXdDSQGMqwgquqRbxKOtrGXCEIq/fP83qZU6l4B/2aY/pRp9Edad0vL5ulRdO320HmdNHlULq/gt1A1C8dCZfEzHVeburpYhUXeKrR0JZzEHQzZJvBTxRzp1/FYkYJiFrwI6VtSVNR5wjjgek2Fen779qyKLkPL1HNpEMI8IkuhWMRoAs5moBh0c9EQplewFk1lZYcVLnVDhkDT/nTY+OhX4229s6s/mdKLMowPCT33ro4mpW5hfW++w3hkYytX77546lRMZjcbhUWu2w=
+  app: client-tell-presentation
   run: rails db:migrate
