@@ -8,7 +8,6 @@ RSpec.describe 'create review', type: :request do
         it 'creates client and review' do
           @user = User.create!(email: 'testemail@test.com', password: 'testpassword', password_confirmation: 'testpassword')
 
-
           post graphql_path, params: {
             query: mutation(
               user_id: @user.id,
@@ -210,6 +209,23 @@ RSpec.describe 'create review', type: :request do
             }
           }
         GQL
+    end
+    def sign_in_mutation(email:, password:)
+      <<~GQL
+        mutation{
+          signIn(
+            authProvider: {
+              credentials: {
+                email: "#{email}",
+                password: "#{password}"
+              }
+            }
+          )
+          {
+           token
+          }
+        }
+      GQL
     end
   end
 end
