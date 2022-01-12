@@ -1,0 +1,10 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+  HMAC_SECRET: 'b9138f35409f62f3dc23fd2ea99bcd033c55bca2ba434b6c5cf5394ec801d17485f6f3d5fbf73c728f569bc04876f9107938300ddf4b626777a2ada24c0f546e'
