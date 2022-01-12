@@ -14,7 +14,7 @@ RSpec.describe 'create review', type: :request do
 
         token = json_response[:data][:signIn][:token]
 
-        post graphql_path, params: { query: mutation(token: token, rating: 3) }
+        post graphql_path, params: { query: mutation(user_id: @user.id, rating: 3) }
         json_response = JSON.parse(@response.body, symbolize_names: true)
 
         expected = [@user.id, Review.first.client_id, Review.first.id]
@@ -62,11 +62,11 @@ RSpec.describe 'create review', type: :request do
       end
     end
 
-    def mutation(token:, rating:)
+    def mutation(user_id:, rating:)
         <<~GQL
           mutation {
             reviewCreate(
-              token: #{token},
+              userId: #{user_id},
               clientEmail: "clientemail@test.com",
               rating: #{rating},
               safetyMeter: 9
