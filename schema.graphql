@@ -1,16 +1,3 @@
-input AUTH_CREDENTIALS {
-  email: String!
-  password: String!
-}
-
-input AuthProviderSignInData {
-  credentials: AUTH_CREDENTIALS
-}
-
-input AuthProviderSignupData {
-  credentials: NEW_CREDENTIALS
-}
-
 type Client {
   associatedClients: [Client!]
   averageDuration: Float
@@ -36,14 +23,8 @@ scalar ISO8601DateTime
 type Mutation {
   reviewCreate(body: String, clientEmail: String, clientPhone: String, condoms: String, dateAgain: String, duration: Float, gender: String, hygiene: Int, payment: Int, punctuality: String, rating: Int!, safetyMeter: Int!, size: Float, userId: ID!, vibe: Int): ReviewCreatePayload!
   reviewEdit(body: String, condoms: String, dateAgain: String, duration: Float, gender: String, hygiene: Int, payment: Int, punctuality: String, reviewId: ID!, size: Float, vibe: Int): ReviewEditPayload!
-  signIn(authProvider: AuthProviderSignInData): SignInPayload!
-  userCreate(authProvider: AuthProviderSignupData): UserCreatePayload!
-}
-
-input NEW_CREDENTIALS {
-  email: String!
-  password: String!
-  passwordConfirmation: String!
+  signIn(email: String!, password: String!): SignInPayload!
+  userCreate(email: String!, password: String!, passwordConfirmation: String!): UserCreatePayload!
 }
 
 type Query {

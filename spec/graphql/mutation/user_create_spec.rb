@@ -65,13 +65,9 @@ RSpec.describe 'create user', type: :request do
     <<~GQL
       mutation{
         userCreate(
-          authProvider: {
-            credentials: {
-              email: "#{email}",
-              password: "#{password}",
-              passwordConfirmation: "#{password_confirmation}"
-            }
-          }
+          email: "#{email}",
+          password: "#{password}",
+          passwordConfirmation: "#{password_confirmation}"
         )
         {
           user{
